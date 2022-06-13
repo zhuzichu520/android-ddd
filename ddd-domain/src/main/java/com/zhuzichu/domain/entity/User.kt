@@ -6,6 +6,13 @@ import com.zhuzichu.shared.tool.json2Object
 import com.zhuzichu.shared.tool.object2Json
 
 class User(
+    var admin: Boolean? = null,
+    var chapterTops: List<Any?>? = null,
+    var coinCount: Int? = null,
+    var collectIds: List<Int?>? = null,
+    var email: String? = null,
+    var icon: String? = null,
+    var id: Int? = null,
     var nickname: String? = null,
     var password: String? = null,
     var publicName: String? = null,
