@@ -58,6 +58,9 @@ dependencies {
 
     implementation 'com.tencent:mmkv:1.2.13'
 
+    implementation "org.mapstruct:mapstruct:1.5.1.Final"
+    kapt "org.mapstruct:mapstruct-processor:1.5.1.Final"
+
     implementation project(path: ':library-shared')
     implementation project(path: ':ddd-domain')
     implementation project(path: ':ddd-infrastructure')

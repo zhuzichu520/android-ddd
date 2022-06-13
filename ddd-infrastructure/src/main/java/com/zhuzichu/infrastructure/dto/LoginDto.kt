@@ -1,17 +1,17 @@
 package com.zhuzichu.infrastructure.dto
 
-data class LoginDto(
-    val admin: Boolean?,
-    val chapterTops: List<Any?>?,
-    val coinCount: Int?,
-    val collectIds: List<Int?>?,
-    val email: String?,
-    val icon: String?,
-    val id: Int?,
-    val nickname: String?,
-    val password: String?,
-    val publicName: String?,
-    val token: String?,
-    val type: Int?,
-    val username: String?
+class LoginDto(
+    val admin: Boolean? = null,
+    val chapterTops: List<Any?>? = null,
+    val coinCount: Int? = null,
+    val collectIds: List<Int?>? = null,
+    val email: String? = null,
+    val icon: String? = null,
+    val id: Int? = null,
+    val nickname: String? = null,
+    val password: String? = null,
+    val publicName: String? = null,
+    val token: String? = null,
+    val type: Int? = null,
+    val username: String? = null
 )

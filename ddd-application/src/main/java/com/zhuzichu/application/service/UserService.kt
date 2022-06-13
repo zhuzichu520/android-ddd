@@ -8,6 +8,4 @@ interface UserService {
     @Throws(Exception::class)
     suspend fun login(loginParam: LoginParam): UserVo
 
-    fun getLocalUser(): UserVo
-
 }

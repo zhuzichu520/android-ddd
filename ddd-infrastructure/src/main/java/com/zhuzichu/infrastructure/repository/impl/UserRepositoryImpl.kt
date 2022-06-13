@@ -10,7 +10,6 @@ import rxhttp.xxx.RxHttp
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
-    private val userConverter: UserConverter
 ) : UserRepository {
 
     override suspend fun login(
@@ -21,7 +20,7 @@ class UserRepositoryImpl @Inject constructor(
             .addQuery("username", username)
             .addQuery("password", password)
             .toClass<Response<LoginDto>>().await()
-        return userConverter.toUser(response.check())
+        return UserConverter.INSTANCE.toUser(response.check())
     }
 
 }

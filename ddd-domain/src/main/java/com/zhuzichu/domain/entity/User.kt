@@ -1,18 +1,17 @@
 package com.zhuzichu.domain.entity
 
-import com.google.gson.Gson
 import com.tencent.mmkv.MMKV
 import com.zhuzichu.shared.tool.StringPreference
 import com.zhuzichu.shared.tool.json2Object
 import com.zhuzichu.shared.tool.object2Json
 
-data class User(
-    val nickname: String? = null,
-    val password: String? = null,
-    val publicName: String? = null,
-    val token: String? = null,
-    val type: Int? = null,
-    val username: String? = null
+class User(
+    var nickname: String? = null,
+    var password: String? = null,
+    var publicName: String? = null,
+    var token: String? = null,
+    var type: Int? = null,
+    var username: String? = null
 ) {
 
 
@@ -41,7 +40,7 @@ data class User(
     }
 
     fun fillLocal() {
-        json2Object(sourceData,User::class.java)
+        json2Object(sourceData, User::class.java)
     }
 
 }
