@@ -6,4 +6,5 @@ interface UserRepository {
 
     suspend fun login(username: String?, password: String?): User
 
+    fun getUserByLocal(): User
 }

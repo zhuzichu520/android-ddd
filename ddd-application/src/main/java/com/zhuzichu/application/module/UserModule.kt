@@ -1,7 +1,7 @@
 package com.zhuzichu.application.module
 
-import com.zhuzichu.application.service.UserService
-import com.zhuzichu.application.service.impl.UserServiceImpl
+import com.zhuzichu.application.service.UserApplicationService
+import com.zhuzichu.application.service.impl.UserApplicationServiceImpl
 import com.zhuzichu.domain.repository.UserRepository
 import com.zhuzichu.infrastructure.repository.impl.UserRepositoryImpl
 import dagger.Module
@@ -21,8 +21,8 @@ class UserModule {
     @Provides
     fun provideUserService(
         userRepository: UserRepository
-    ): UserService {
-        return UserServiceImpl(userRepository)
+    ): UserApplicationService {
+        return UserApplicationServiceImpl(userRepository)
     }
 
 

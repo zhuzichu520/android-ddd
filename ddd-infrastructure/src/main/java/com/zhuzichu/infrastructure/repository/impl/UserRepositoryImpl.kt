@@ -5,6 +5,8 @@ import com.zhuzichu.infrastructure.dto.Response
 import com.zhuzichu.domain.entity.User
 import com.zhuzichu.domain.repository.UserRepository
 import com.zhuzichu.infrastructure.converter.UserConverter
+import com.zhuzichu.shared.tool.json2Object
+import com.zhuzichu.shared.tool.object2Json
 import rxhttp.toClass
 import rxhttp.xxx.RxHttp
 import javax.inject.Inject
@@ -20,7 +22,17 @@ class UserRepositoryImpl @Inject constructor(
             .addQuery("username", username)
             .addQuery("password", password)
             .toClass<Response<LoginDto>>().await()
-        return UserConverter.INSTANCE.toUser(response.check())
+        val loginDto = response.check()
+        val user = UserConverter.INSTANCE.toUser(loginDto)
+        user.saveSourceData(object2Json(loginDto))
+        return user
+    }
+
+    override fun getUserByLocal(): User {
+        var user = User()
+        val loginDto = json2Object(user.sourceData, LoginDto::class.java)
+        user = UserConverter.INSTANCE.toUser(loginDto)
+        return user
     }
 
 }

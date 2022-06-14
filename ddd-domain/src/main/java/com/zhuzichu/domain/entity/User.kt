@@ -21,33 +21,35 @@ class User(
     var username: String? = null
 ) {
 
-
-    companion object {
-        private const val PREFS_NAME = "User"
-    }
-
     private val prefs: Lazy<MMKV> = lazy {
         MMKV.mmkvWithID(PREFS_NAME)
     }
 
-    private var sourceData by StringPreference(prefs, null)
+    var sourceData by StringPreference(prefs, null)
+
 
     /**
      * 保存本地登录信息
      */
-    fun saveLocal() {
-        sourceData = object2Json(this)
+    fun saveSourceData(json: String?) {
+        sourceData = json
     }
 
     /**
-     * 清除本地登录信息
+     * 移除本地登录信息
      */
-    fun clearLocal() {
+    fun removeSourceData() {
         sourceData = null
     }
 
     fun fillLocal() {
         json2Object(sourceData, User::class.java)
     }
+
+
+    companion object {
+        private const val PREFS_NAME = "User"
+    }
+
 
 }

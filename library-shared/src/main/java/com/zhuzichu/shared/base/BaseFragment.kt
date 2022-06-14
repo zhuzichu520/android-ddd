@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.IdRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import com.zhuzichu.shared.exception.BizException
 import com.zhuzichu.shared.tool.toCast
 import com.zhuzichu.shared.view.LoadingDialog
@@ -52,24 +55,20 @@ abstract class BaseFragment<TBinding : ViewDataBinding, TViewModel : BaseViewMod
 
     private fun registerUIChangeLiveDataCallback() {
         viewModel.onToastEvent.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it ?: "", Toast.LENGTH_SHORT).show()
+            toast(it)
         }
         viewModel.onLoadingEvent.observe(viewLifecycleOwner) {
-            if (loading == null) {
-                loading = LoadingDialog(requireContext())
-            }
             if (it) {
-                loading?.show()
+                showLoading()
             } else {
-                loading?.dismiss()
+                hideLoading()
             }
         }
         viewModel.onExceptionEvent.observe(viewLifecycleOwner) {
-            if (it is BizException) {
-                viewModel.toast(it.message)
-            } else {
-                viewModel.toast(it.message)
-            }
+            handleException(it)
+        }
+        viewModel.onNavigateEvent.observe(viewLifecycleOwner) {
+            navigate(it.resId, it.args, it.navOptions)
         }
     }
 
@@ -83,11 +82,44 @@ abstract class BaseFragment<TBinding : ViewDataBinding, TViewModel : BaseViewMod
         viewModel = ViewModelProvider(this).get(modelClass.toCast())
         binding.setVariable(bindVariableId(), viewModel)
         binding.lifecycleOwner = viewLifecycleOwner
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
         binding.unbind()
     }
+
+
+    open fun toast(text: String?) {
+        Toast.makeText(requireContext(), text ?: "", Toast.LENGTH_SHORT).show()
+    }
+
+    open fun showLoading() {
+        if (loading == null) {
+            loading = LoadingDialog(requireContext())
+        }
+        loading?.show()
+    }
+
+    open fun hideLoading() {
+        if (loading == null) {
+            loading = LoadingDialog(requireContext())
+        }
+        loading?.dismiss()
+    }
+
+    open fun handleException(e: Exception) {
+        if (e is BizException) {
+            viewModel.toast(e.message)
+        } else {
+            viewModel.toast(e.message)
+        }
+    }
+
+    open fun navigate(@IdRes resId: Int, args: Bundle? = null, navOptions: NavOptions? = null) {
+        findNavController().navigate(resId, args, navOptions)
+    }
+
 
 }
