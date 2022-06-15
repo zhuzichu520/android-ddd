@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/quesMainFragment">
+
+    <fragment
+        android:id="@+id/homeMainFragment"
+        android:name="com.zhuzichu.wan.home.HomeMainFragment"
+        android:label="HomeMainFragment"
+        tools:layout="@layout/fragment_main_home" />
+
+    <fragment
+        android:id="@+id/quesMainFragment"
+        android:name="com.zhuzichu.wan.ques.QuesMainFragment"
+        android:label="QuesMainFragment"
+        tools:layout="@layout/fragment_main_ques" />
+
+    <fragment
+        android:id="@+id/naviMainFragment"
+        android:name="com.zhuzichu.wan.navi.NaviMainFragment"
+        android:label="NaviMainFragment"
+        tools:layout="@layout/fragment_main_navi" />
+
+    <fragment
+        android:id="@+id/profileMainFragment"
+        android:name="com.zhuzichu.wan.profile.ProfileMainFragment"
+        android:label="ProfileMainFragment"
+        tools:layout="@layout/fragment_main_profile" />
+
+</navigation>

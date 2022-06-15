@@ -25,27 +25,25 @@ class User(
         MMKV.mmkvWithID(PREFS_NAME)
     }
 
-    var sourceData by StringPreference(prefs, null)
-
+    private var sourceDataPref by StringPreference(prefs, null)
 
     /**
      * 保存本地登录信息
      */
     fun saveSourceData(json: String?) {
-        sourceData = json
+        sourceDataPref = json
+    }
+
+    fun getSourceData(): String? {
+        return sourceDataPref
     }
 
     /**
      * 移除本地登录信息
      */
     fun removeSourceData() {
-        sourceData = null
+        sourceDataPref = null
     }
-
-    fun fillLocal() {
-        json2Object(sourceData, User::class.java)
-    }
-
 
     companion object {
         private const val PREFS_NAME = "User"

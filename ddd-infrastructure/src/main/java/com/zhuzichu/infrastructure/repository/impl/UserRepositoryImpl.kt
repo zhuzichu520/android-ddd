@@ -30,7 +30,7 @@ class UserRepositoryImpl @Inject constructor(
 
     override fun getUserByLocal(): User {
         var user = User()
-        val loginDto = json2Object(user.sourceData, LoginDto::class.java)
+        val loginDto = json2Object(user.getSourceData(), LoginDto::class.java)
         user = UserConverter.INSTANCE.toUser(loginDto)
         return user
     }

@@ -1,14 +1,16 @@
-package com.zhuzichu.wan
+package com.zhuzichu.wan.navi
 
 import com.zhuzichu.shared.base.BaseFragment
-import com.zhuzichu.wan.databinding.FragmentLoginBinding
+import com.zhuzichu.wan.R
+import androidx.databinding.library.baseAdapters.BR
+import com.zhuzichu.wan.databinding.FragmentMainNaviBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
+class NaviMainFragment : BaseFragment<FragmentMainNaviBinding, NaviMainViewModel>() {
 
     override fun setLayoutId(): Int {
-        return R.layout.fragment_login
+        return R.layout.fragment_main_navi
     }
 
     override fun bindVariableId(): Int {

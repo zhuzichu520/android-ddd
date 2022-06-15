@@ -11,7 +11,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
+import androidx.navigation.Navigator
 import androidx.navigation.fragment.findNavController
+import com.gyf.immersionbar.ktx.immersionBar
+import com.zhuzichu.shared.R
 import com.zhuzichu.shared.exception.BizException
 import com.zhuzichu.shared.tool.toCast
 import com.zhuzichu.shared.view.LoadingDialog
@@ -46,6 +49,10 @@ abstract class BaseFragment<TBinding : ViewDataBinding, TViewModel : BaseViewMod
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        immersionBar {
+            statusBarColor("#000000")
+            navigationBarColor("#000000")
+        }
         initViewDataBinding()
         registerUIChangeLiveDataCallback()
         initVariable()
@@ -82,14 +89,13 @@ abstract class BaseFragment<TBinding : ViewDataBinding, TViewModel : BaseViewMod
         viewModel = ViewModelProvider(this).get(modelClass.toCast())
         binding.setVariable(bindVariableId(), viewModel)
         binding.lifecycleOwner = viewLifecycleOwner
-
+        lifecycle.addObserver(viewModel)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         binding.unbind()
     }
-
 
     open fun toast(text: String?) {
         Toast.makeText(requireContext(), text ?: "", Toast.LENGTH_SHORT).show()
@@ -117,9 +123,30 @@ abstract class BaseFragment<TBinding : ViewDataBinding, TViewModel : BaseViewMod
         }
     }
 
-    open fun navigate(@IdRes resId: Int, args: Bundle? = null, navOptions: NavOptions? = null) {
-        findNavController().navigate(resId, args, navOptions)
+    open fun navigate(
+        @IdRes resId: Int,
+        args: Bundle? = null,
+        navOptions: NavOptions? = null,
+        navigatorExtras: Navigator.Extras? = null
+    ) {
+        findNavController().navigate(resId, args, toNavOptions(resId), navigatorExtras)
     }
 
+    private fun toNavOptions(@IdRes resId: Int): NavOptions? {
+        val navOptions =
+            findNavController().currentDestination?.getAction(resId)?.navOptions ?: return null
+        return androidx.navigation.navOptions {
+            anim {
+                enter = R.anim.slide_in
+                exit = R.anim.fade_out
+                popEnter = R.anim.fade_in
+                popExit = R.anim.slide_out
+            }
+            launchSingleTop = navOptions.shouldLaunchSingleTop()
+            popUpTo(navOptions.popUpToId) {
+                this.inclusive = navOptions.isPopUpToInclusive()
+            }
+        }
+    }
 
 }

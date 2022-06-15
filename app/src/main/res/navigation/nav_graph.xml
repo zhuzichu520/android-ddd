@@ -3,26 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/LoginFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/LoginFragment"
+        android:id="@+id/loginFragment"
         android:name="com.zhuzichu.wan.LoginFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_login">
-
         <action
             android:id="@+id/action_LoginFragment_to_MainFragment"
-            app:destination="@id/MainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/MainFragment"
+        android:id="@+id/mainFragment"
         android:name="com.zhuzichu.wan.MainFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_main">
+        tools:layout="@layout/fragment_main" />
 
-        <action
-            android:id="@+id/action_MainFragment_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
-    </fragment>
 </navigation>

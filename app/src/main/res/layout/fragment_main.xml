@@ -15,25 +15,24 @@
         android:layout_height="match_parent"
         tools:context=".MainFragment">
 
-        <TextView
-            android:id="@+id/textview_second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.userInfo}"
-            app:layout_constraintBottom_toTopOf="@id/button_second"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager_navi"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button_second"
-            android:layout_width="wrap_content"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navi"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="获取本地用户信息"
+            app:itemIconTint="@color/selector_main_bottom_color"
+            app:itemTextColor="@color/selector_main_bottom_color"
+            app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_second"
-            app:onClickCommand="@{viewModel.onGetUserCommand}" />
+            app:menu="@menu/menu_main_bottom" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
