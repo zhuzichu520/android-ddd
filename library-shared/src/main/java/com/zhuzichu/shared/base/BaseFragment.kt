@@ -50,6 +50,7 @@ abstract class BaseFragment<TBinding : ViewDataBinding, TViewModel : BaseViewMod
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         immersionBar {
+            fitsSystemWindows(true)
             statusBarColor("#000000")
             navigationBarColor("#000000")
         }

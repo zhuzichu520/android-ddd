@@ -1,6 +1,6 @@
 package com.zhuzichu.infrastructure.dto
 
-class ArticleDao(
+class ArticleDto(
     var apkLink: String? = null,
     var audit: Int? = null,
     var author: String? = null,

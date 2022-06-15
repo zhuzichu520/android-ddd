@@ -13,7 +13,7 @@ data class Response<T>(
 ) {
     fun check(): T? {
         if (errorCode != 0)
-            throw BizException(errorMsg,errorCode)
+            throw BizException(errorMsg, errorCode)
         return data
     }
 }

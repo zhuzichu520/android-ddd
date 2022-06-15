@@ -8,18 +8,9 @@
         <entry key="..\:/AndroidProjects/WanAndroid/app/src/main/res/layout/fragment_first.xml" value="0.3605072463768116" />
         <entry key="..\:/AndroidProjects/WanAndroid/app/src/main/res/layout/fragment_login.xml" value="0.3605072463768116" />
         <entry key="..\:/AndroidProjects/WanAndroid/app/src/main/res/layout/fragment_main.xml" value="0.3605072463768116" />
+        <entry key="..\:/AndroidProjects/WanAndroid/app/src/main/res/layout/fragment_main_home.xml" value="0.2109375" />
         <entry key="..\:/AndroidProjects/WanAndroid/app/src/main/res/layout/fragment_second.xml" value="0.3605072463768116" />
         <entry key="..\:/AndroidProjects/WanAndroid/library-shared/src/main/res/layout/layout_loading.xml" value="0.15489130434782608" />
-        <entry key="app/src/main/res/drawable/selected_main_bottom_color.xml" value="0.19" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19322916666666667" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1983695652173913" />
-        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.20516304347826086" />
-        <entry key="app/src/main/res/layout/fragment_main_home.xml" value="0.15416666666666667" />
-        <entry key="app/src/main/res/layout/fragment_main_ques.xml" value="0.15416666666666667" />
-        <entry key="app/src/main/res/layout/fragment_mine.xml" value="0.1983695652173913" />
-        <entry key="app/src/main/res/layout/fragment_navi.xml" value="0.1983695652173913" />
-        <entry key="app/src/main/res/layout/fragment_ques.xml" value="0.1983695652173913" />
-        <entry key="app/src/main/res/menu/menu_main_bottom.xml" value="0.2947916666666667" />
       </map>
     </option>
   </component>
