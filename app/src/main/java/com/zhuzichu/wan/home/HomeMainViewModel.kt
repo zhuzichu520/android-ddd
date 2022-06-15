@@ -2,15 +2,19 @@ package com.zhuzichu.wan.home
 
 import android.app.Application
 import android.util.Log
+import androidx.databinding.library.baseAdapters.BR
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.zhuzichu.application.param.LoginParam
 import com.zhuzichu.application.service.ArticleApplicationService
 import com.zhuzichu.application.service.UserApplicationService
+import com.zhuzichu.application.vo.ArticleVo
 import com.zhuzichu.shared.base.BaseViewModel
 import com.zhuzichu.shared.command.BindingCommand
 import com.zhuzichu.wan.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass
 import javax.inject.Inject
 
 private const val TAG = "HomeMainViewModel"
@@ -21,22 +25,24 @@ class HomeMainViewModel @Inject constructor(
     private val articleApplicationService: ArticleApplicationService
 ) : BaseViewModel(application) {
 
+    val items = MutableLiveData<List<ArticleVo>>()
+
+    val itemBinding = OnItemBindClass<Any>().apply {
+        map(ArticleVo::class.java, BR.item, R.layout.item_article)
+    }
+
     val onLoadListCommand = BindingCommand(execute = {
-        showLoading()
         viewModelScope.launch {
             try {
-                val list = articleApplicationService.getArticleList()
-                toast(list.datas?.size?.toString())
+                items.value = articleApplicationService.getArticleList().datas
             } catch (e: Exception) {
                 handleException(e)
             } finally {
-                hideLoading()
             }
         }
     })
 
     val onLoadTopCommand = BindingCommand(execute = {
-        showLoading()
         viewModelScope.launch {
             try {
                 val list = articleApplicationService.getTopArticle()
@@ -44,7 +50,6 @@ class HomeMainViewModel @Inject constructor(
             } catch (e: Exception) {
                 handleException(e)
             } finally {
-                hideLoading()
             }
         }
     })

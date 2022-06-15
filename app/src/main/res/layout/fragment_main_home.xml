@@ -14,25 +14,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="下载列表"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:onClickCommand="@{viewModel.onLoadListCommand}" />
+        <com.zy.multistatepage.MultiStateContainer
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="下载置顶"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="20dp"
-            app:onClickCommand="@{viewModel.onLoadTopCommand}" />
+            <com.scwang.smart.refresh.layout.SmartRefreshLayout
+                android:id="@+id/refresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:itemBinding="@{viewModel.itemBinding}"
+                    app:items="@{viewModel.items}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_article" />
+
+            </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+        </com.zy.multistatepage.MultiStateContainer>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
