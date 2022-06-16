@@ -27,7 +27,7 @@ class HomeMainFragment : BaseFragment<FragmentMainHomeBinding, HomeMainViewModel
 
     override fun initData() {
         super.initData()
-        viewModel.onLoadListCommand.execute()
+        viewModel.onLoadListCommand.execute(null)
     }
 
 }

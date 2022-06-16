@@ -4,6 +4,7 @@
     <attr name="fontColorPrimary" format="color" />
     <attr name="fontColorSecondary" format="color" />
     <attr name="fontColorTertiary" format="color" />
+    <attr name="colorDivider" format="color" />
 
     <style name="Theme.WanAndroid" parent="Theme.Material3.DayNight">
         <!-- Primary brand color. -->
@@ -20,6 +21,7 @@
         <item name="fontColorPrimary">@color/color_333333</item>
         <item name="fontColorSecondary">@color/color_666666</item>
         <item name="fontColorTertiary">@color/color_999999</item>
+        <item name="colorDivider">@color/color_dddddd</item>
     </style>
 
     <style name="Theme.WanAndroid.NoActionBar">

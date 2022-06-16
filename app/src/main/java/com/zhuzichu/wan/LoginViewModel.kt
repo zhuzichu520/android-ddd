@@ -22,7 +22,7 @@ class LoginViewModel @Inject constructor(
 
     val password = MutableLiveData<String>("qaioasd520")
 
-    val onLoginCommand = BindingCommand(execute = {
+    val onLoginCommand = BindingCommand<Unit>(execute = {
         showLoading()
         viewModelScope.launch {
             try {

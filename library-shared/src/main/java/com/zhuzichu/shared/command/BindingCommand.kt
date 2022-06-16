@@ -1,12 +1,20 @@
 package com.zhuzichu.shared.command
 
-class BindingCommand(
-    private var execute: (() -> Unit),
+class BindingCommand<T>(
+    private var execute: (() -> Unit)? = null,
+    private var consumer: ((T?) -> Unit)? = null,
     private var canExecute: Boolean = true
 ) {
     fun execute() {
         if (canExecute) {
-            execute.invoke()
+            execute?.invoke()
         }
     }
+
+    fun execute(parameter: T?) {
+        if (canExecute) {
+            consumer?.invoke(parameter)
+        }
+    }
+
 }

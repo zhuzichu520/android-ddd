@@ -19,7 +19,7 @@ class MainViewModel @Inject constructor(
 
     val userInfo = MutableLiveData<String>()
 
-    val onGetUserCommand = BindingCommand(execute = {
+    val onGetUserCommand = BindingCommand<Unit>(execute = {
         showLoading()
         viewModelScope.launch {
             try {

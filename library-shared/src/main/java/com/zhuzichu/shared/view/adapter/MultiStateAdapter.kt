@@ -1,18 +1,43 @@
 package com.zhuzichu.shared.view.adapter
 
-import android.view.View
 import androidx.databinding.BindingAdapter
-import com.jakewharton.rxbinding4.view.clicks
-import com.zhuzichu.shared.command.BindingCommand
 import com.zy.multistatepage.MultiStateContainer
+import com.zy.multistatepage.state.EmptyState
 import com.zy.multistatepage.state.ErrorState
+import com.zy.multistatepage.state.LoadingState
+import com.zy.multistatepage.state.SuccessState
 
+enum class ViewState {
+    ERROR, SUCCESS, LOADING, EMPTY
+}
 
-@BindingAdapter(value = ["onClickCommand", "isThrottleFirst"], requireAll = false)
+@BindingAdapter(value = ["viewState"], requireAll = false)
 fun onBindMultiStateContainer(
     container: MultiStateContainer,
-    clickCommand: BindingCommand?,
-    isThrottleFirst: Boolean?
+    state: ViewState?
 ) {
-    container.show(ErrorState::class.java)
+    state?.let {
+        when (it) {
+            ViewState.ERROR -> {
+                container.show(ErrorState::class.java) {
+
+                }
+            }
+            ViewState.LOADING -> {
+                container.show(LoadingState::class.java) {
+
+                }
+            }
+            ViewState.SUCCESS -> {
+                container.show(SuccessState::class.java) {
+
+                }
+            }
+            ViewState.EMPTY -> {
+                container.show(EmptyState::class.java) {
+
+                }
+            }
+        }
+    }
 }

@@ -16,17 +16,21 @@
 
         <com.zy.multistatepage.MultiStateContainer
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:viewState="@{viewModel.viewState}">
 
             <com.scwang.smart.refresh.layout.SmartRefreshLayout
                 android:id="@+id/refresh"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                app:onLoadMoreCommand="@{viewModel.onLoadListCommand}"
+                app:onRefreshCommand="@{viewModel.onRefreshCommand}">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:overScrollMode="never"
                     app:itemBinding="@{viewModel.itemBinding}"
                     app:items="@{viewModel.items}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

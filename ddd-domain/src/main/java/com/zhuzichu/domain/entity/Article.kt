@@ -1,5 +1,8 @@
 package com.zhuzichu.domain.entity
 
+import androidx.core.text.HtmlCompat
+import com.zhuzichu.shared.tool.removeAllBank
+
 class Article(
     var apkLink: String? = null,
     var audit: Int? = null,
@@ -34,4 +37,24 @@ class Article(
     var userId: Int? = null,
     var visible: Int? = null,
     var zan: Int? = null
-)
+) {
+
+    var top: Boolean? = null
+
+    var displayAuthor: String? = null
+
+    var displayDesc: String? = null
+
+    var chapter: String? = null
+
+    fun handleData(isTop: Boolean? = false) {
+        this.top = isTop
+        chapter = "${superChapterName}：${chapterName}"
+        displayAuthor = if (!author.isNullOrEmpty()) author else shareUser ?: "神秘人"
+        displayDesc = HtmlCompat.fromHtml(
+            desc ?: "",
+            HtmlCompat.FROM_HTML_MODE_COMPACT
+        ).toString().removeAllBank()
+    }
+
+}

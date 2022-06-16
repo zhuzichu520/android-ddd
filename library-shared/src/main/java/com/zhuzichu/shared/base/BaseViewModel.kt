@@ -6,6 +6,7 @@ import androidx.annotation.IdRes
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewTreeLifecycleOwner
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import com.rxjava.rxlife.ScopeViewModel
@@ -14,6 +15,8 @@ import com.zhuzichu.shared.event.SingleLiveEvent
 
 abstract class BaseViewModel(application: Application) : ScopeViewModel(application),
     LifecycleEventObserver {
+
+    lateinit var viewLifecycleOwner: LifecycleOwner
 
     internal val onToastEvent = SingleLiveEvent<String>()
     internal val onLoadingEvent = SingleLiveEvent<Boolean>()

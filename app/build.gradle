@@ -54,10 +54,13 @@ dependencies {
     implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0'
     implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-viewpager2:4.0.0'
 
+    implementation 'io.github.youth5201314:banner:2.2.2'
+
     implementation "io.github.scwang90:refresh-layout-kernel:2.0.5"
     implementation "io.github.scwang90:refresh-header-classics:2.0.5"
 
     implementation 'com.github.Zhao-Yan-Yan:MultiStatePage:2.0.2'
+    implementation("io.coil-kt:coil:2.1.0")
 
     implementation project(path: ":library-shared")
     implementation project(path: ":ddd-application")

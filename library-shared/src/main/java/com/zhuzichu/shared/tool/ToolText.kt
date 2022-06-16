@@ -4,6 +4,9 @@
 
 package com.zhuzichu.shared.tool
 
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 fun String?.toStringEmpty(): String {
     return this ?: ""
 }
@@ -192,18 +195,39 @@ fun String.addSpaceEvery2Charts(): String {
 
 fun String.hex2ByteArray(): ByteArray {
     val s = this.replace(" ", "")
-    val bs = ByteArray(s.length/2)
-    for (i in 0 until s.length/2){
-        bs[i] = s.substring(i*2, i*2+2).toInt(16).toByte()
+    val bs = ByteArray(s.length / 2)
+    for (i in 0 until s.length / 2) {
+        bs[i] = s.substring(i * 2, i * 2 + 2).toInt(16).toByte()
     }
     return bs
 }
 
 fun String.ascii2ByteArray(hasSpace: Boolean = false): ByteArray {
-    val s = if(hasSpace) this else this.replace(" ", "")
+    val s = if (hasSpace) this else this.replace(" ", "")
     return s.toByteArray(charset("US-ASCII"))
 }
 
 fun String.addFirst(s: String) = "$s$this"
 
 fun String.addLast(s: String) = "$this$s"
+
+
+fun String?.removeAllBank(): String {
+    var s = ""
+    if (this != null) {
+        val p: Pattern = Pattern.compile("\\s*|\t|\r|\n")
+        val m: Matcher = p.matcher(this)
+        s = m.replaceAll("")
+    }
+    return s
+}
+
+fun String?.removeAllBank(count: Int): String {
+    var s = ""
+    if (this != null) {
+        val p: Pattern = Pattern.compile("\\s{$count,}|\t|\r|\n")
+        val m: Matcher = p.matcher(this)
+        s = m.replaceAll(" ")
+    }
+    return s
+}

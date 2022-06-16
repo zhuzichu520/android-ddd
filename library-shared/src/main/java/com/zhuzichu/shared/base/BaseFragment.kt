@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewTreeLifecycleOwner
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.fragment.findNavController
@@ -19,6 +20,9 @@ import com.zhuzichu.shared.exception.BizException
 import com.zhuzichu.shared.tool.toCast
 import com.zhuzichu.shared.view.LoadingDialog
 import java.lang.reflect.ParameterizedType
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 abstract class BaseFragment<TBinding : ViewDataBinding, TViewModel : BaseViewModel> : Fragment() {
 
@@ -88,6 +92,7 @@ abstract class BaseFragment<TBinding : ViewDataBinding, TViewModel : BaseViewMod
             BaseViewModel::class.java
         }
         viewModel = ViewModelProvider(this).get(modelClass.toCast())
+        viewModel.viewLifecycleOwner = viewLifecycleOwner
         binding.setVariable(bindVariableId(), viewModel)
         binding.lifecycleOwner = viewLifecycleOwner
         lifecycle.addObserver(viewModel)
@@ -117,10 +122,19 @@ abstract class BaseFragment<TBinding : ViewDataBinding, TViewModel : BaseViewMod
     }
 
     open fun handleException(e: Exception) {
-        if (e is BizException) {
-            viewModel.toast(e.message)
-        } else {
-            viewModel.toast(e.message)
+        when (e) {
+            is BizException -> {
+                viewModel.toast(e.message)
+            }
+            is SocketTimeoutException,
+            is UnknownHostException,
+            is ConnectException
+            -> {
+                viewModel.toast("网络异常,请稍后再试")
+            }
+            else -> {
+                viewModel.toast(e.message)
+            }
         }
     }
 
