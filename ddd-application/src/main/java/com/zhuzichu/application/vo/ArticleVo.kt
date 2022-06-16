@@ -8,4 +8,5 @@ class ArticleVo(
     var top: Boolean? = false,
     var niceDate: String? = null,
     var fresh: Boolean? = null,
+    var link: String? = null,
 )

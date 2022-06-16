@@ -6,7 +6,7 @@
     <attr name="fontColorTertiary" format="color" />
     <attr name="colorDivider" format="color" />
 
-    <style name="Theme.WanAndroid" parent="Theme.Material3.DayNight">
+    <style name="Theme.WanAndroid" parent="Theme.MaterialComponents.DayNight">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

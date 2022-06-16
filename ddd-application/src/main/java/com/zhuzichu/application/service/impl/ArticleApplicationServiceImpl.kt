@@ -14,24 +14,20 @@ class ArticleApplicationServiceImpl @Inject constructor(
 ) : ArticleApplicationService {
 
     override suspend fun getTopArticle(): List<ArticleVo> {
-        return articleRepository.getTopArticle()?.map {
-            it.handleData(true)
-            ArticleAssembler.INSTANCE.toArticleVo(it)
+        return articleRepository.getTopArticle()?.map { entity ->
+            entity.handleData(true)
+            ArticleAssembler.INSTANCE.toArticleVo(entity)
         } ?: listOf()
     }
 
-    override suspend fun getArticleList(page: Int): PageVo<Any> {
-        val list = mutableListOf<Any>()
-        if (page == 0) {
-            list.addAll(getTopArticle())
-        }
-        return PageVo<Any>().assemble(articleRepository.getArticleList(page)) {
-            val data = it?.map { item ->
-                item.handleData()
-                ArticleAssembler.INSTANCE.toArticleVo(item)
+    override suspend fun getArticleList(
+        page: Int
+    ): PageVo<ArticleVo> {
+        return PageVo<ArticleVo>().assemble(articleRepository.getArticleList(page)) {
+            it?.map { entity ->
+                entity.handleData()
+                ArticleAssembler.INSTANCE.toArticleVo(entity)
             } ?: listOf()
-            list.addAll(data)
-            list
         }
     }
 

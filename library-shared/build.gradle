@@ -54,4 +54,5 @@ dependencies {
     implementation "com.geyifeng.immersionbar:immersionbar-ktx:3.2.2"
     implementation 'com.github.Zhao-Yan-Yan:MultiStatePage:2.0.2'
     implementation "io.github.scwang90:refresh-layout-kernel:2.0.5"
+    implementation 'com.tencent.tbs:tbssdk:44199'
 }

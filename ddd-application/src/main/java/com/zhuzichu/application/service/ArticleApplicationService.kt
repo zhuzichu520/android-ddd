@@ -8,7 +8,7 @@ interface ArticleApplicationService {
 
     suspend fun getTopArticle(): List<ArticleVo>
 
-    suspend fun getArticleList(page: Int): PageVo<Any>
+    suspend fun getArticleList(page: Int): PageVo<ArticleVo>
 
     suspend fun getBannerList(): List<BannerVo>
 

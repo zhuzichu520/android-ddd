@@ -1,3 +1,12 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="m3_bottom_nav_min_height" tools:override="true">64dp</dimen>
+    <dimen name="m3_bottom_nav_item_padding_top" tools:override="true">8dp</dimen>
+    <dimen name="m3_bottom_nav_item_padding_bottom" tools:override="true">10dp</dimen>
+    <dimen name="m3_bottom_nav_item_active_indicator_width" tools:override="true">64dp</dimen>
+    <dimen name="m3_bottom_nav_item_active_indicator_height" tools:override="true">32dp</dimen>
+    <dimen name="m3_bottom_nav_item_active_indicator_margin_horizontal" tools:override="true">4dp
+    </dimen>
+
 </resources>

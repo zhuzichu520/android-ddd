@@ -10,11 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewTreeLifecycleOwner
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.fragment.findNavController
-import com.gyf.immersionbar.ktx.immersionBar
 import com.zhuzichu.shared.R
 import com.zhuzichu.shared.exception.BizException
 import com.zhuzichu.shared.tool.toCast
@@ -53,11 +51,6 @@ abstract class BaseFragment<TBinding : ViewDataBinding, TViewModel : BaseViewMod
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        immersionBar {
-            fitsSystemWindows(true)
-            statusBarColor("#000000")
-            navigationBarColor("#000000")
-        }
         initViewDataBinding()
         registerUIChangeLiveDataCallback()
         initVariable()

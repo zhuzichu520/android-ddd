@@ -16,7 +16,9 @@
 
         <com.zy.multistatepage.MultiStateContainer
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appbar"
             app:viewState="@{viewModel.viewState}">
 
             <com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -39,6 +41,10 @@
             </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
         </com.zy.multistatepage.MultiStateContainer>
+
+        <include
+            android:id="@+id/appbar"
+            layout="@layout/layout_app_bar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
